@@ -117,10 +117,10 @@ public class SimpleMotorFeedforward {
   }
 
   /**
-   * Calculates the feedforward from the gains and setpoints.
+   * Calculates the feedforward from the gains and references.
    *
-   * @param velocity The velocity setpoint.
-   * @param acceleration The acceleration setpoint.
+   * @param velocity The velocity reference.
+   * @param acceleration The acceleration reference.
    * @return The computed feedforward.
    * @deprecated Use the current/next velocity overload instead.
    */
@@ -131,10 +131,10 @@ public class SimpleMotorFeedforward {
   }
 
   /**
-   * Calculates the feedforward from the gains and velocity setpoint (acceleration is assumed to be
+   * Calculates the feedforward from the gains and velocity reference (acceleration is assumed to be
    * zero).
    *
-   * @param velocity The velocity setpoint.
+   * @param velocity The velocity reference.
    * @return The computed feedforward.
    * @deprecated Use the current/next velocity overload instead.
    */
@@ -145,23 +145,23 @@ public class SimpleMotorFeedforward {
   }
 
   /**
-   * Calculates the feedforward from the gains and setpoints assuming discrete control when the
-   * setpoint does not change.
+   * Calculates the feedforward from the gains and references assuming discrete control when the
+   * reference does not change.
    *
    * @param <U> The velocity parameter either as distance or angle.
-   * @param setpoint The velocity setpoint.
+   * @param reference The velocity reference.
    * @return The computed feedforward.
    */
-  public <U extends Unit<U>> Measure<Voltage> calculate(Measure<Velocity<U>> setpoint) {
-    return calculate(setpoint, setpoint);
+  public <U extends Unit<U>> Measure<Voltage> calculate(Measure<Velocity<U>> reference) {
+    return calculate(reference, reference);
   }
 
   /**
-   * Calculates the feedforward from the gains and setpoints assuming discrete control.
+   * Calculates the feedforward from the gains and references assuming discrete control.
    *
    * @param <U> The velocity parameter either as distance or angle.
-   * @param currentVelocity The current velocity setpoint.
-   * @param nextVelocity The next velocity setpoint.
+   * @param currentVelocity The current velocity reference.
+   * @param nextVelocity The next velocity reference.
    * @return The computed feedforward.
    */
   public <U extends Unit<U>> Measure<Voltage> calculate(
